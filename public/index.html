@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>커플 일정</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">커플 일정</div>
+      <div id="user-bar" class="user-bar hidden">
+        <span id="user-label"></span>
+        <button type="button" id="btn-logout" class="btn ghost">로그아웃</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section id="auth-panel" class="panel">
+        <h1>시작하기</h1>
+        <p class="muted">같은 서버의 REST API와 연동되는 데모 화면입니다.</p>
+
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab active" data-tab="login">로그인</button>
+          <button type="button" class="tab" data-tab="register">회원가입</button>
+        </div>
+
+        <form id="form-login" class="tab-panel" autocomplete="on">
+          <label>이메일<input type="email" name="email" required /></label>
+          <label>비밀번호<input type="password" name="password" required /></label>
+          <button type="submit" class="btn primary">로그인</button>
+        </form>
+
+        <form id="form-register" class="tab-panel hidden" autocomplete="on">
+          <label>이메일<input type="email" name="email" required /></label>
+          <label>이름<input type="text" name="name" required /></label>
+          <label>비밀번호<input type="password" name="password" required minlength="6" /></label>
+          <button type="submit" class="btn primary">가입</button>
+        </form>
+      </section>
+
+      <section id="app-panel" class="panel hidden">
+        <div class="grid">
+          <article class="card">
+            <h2>내 커플</h2>
+            <div id="couple-status" class="muted">불러오는 중…</div>
+            <div class="row">
+              <button type="button" id="btn-invite" class="btn">초대 코드 만들기</button>
+            </div>
+            <div id="invite-box" class="invite-box hidden">
+              <p>상대에게 이 코드를 알려주세요.</p>
+              <code id="invite-code"></code>
+            </div>
+            <hr />
+            <h3>초대 수락</h3>
+            <form id="form-join" class="inline">
+              <input type="text" name="inviteCode" placeholder="초대 코드" maxlength="16" />
+              <button type="submit" class="btn primary">참여</button>
+            </form>
+          </article>
+
+          <article class="card wide">
+            <h2>일정</h2>
+            <p id="schedule-hint" class="muted small">
+              커플이 <strong>active</strong> 상태일 때만 등록·수정·삭제할 수 있습니다.
+            </p>
+            <form id="form-schedule" class="schedule-form">
+              <input type="hidden" name="id" />
+              <label>제목<input type="text" name="title" required /></label>
+              <label>설명<textarea name="description" rows="2"></textarea></label>
+              <div class="two">
+                <label>시작<input type="datetime-local" name="startAt" required /></label>
+                <label>종료<input type="datetime-local" name="endAt" required /></label>
+              </div>
+              <div class="row">
+                <button type="submit" class="btn primary" id="btn-schedule-submit">일정 추가</button>
+                <button type="button" class="btn ghost hidden" id="btn-schedule-cancel">취소</button>
+              </div>
+            </form>
+            <ul id="schedule-list" class="schedule-list"></ul>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
