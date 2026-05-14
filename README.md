@@ -1,5 +1,14 @@
 # couple-schedule-web
 
+#### 🟢 1단계 (개발)
+
+로컬 MongoDB or Atlas
+
+#### 🔵 2단계 (배포)
+
+EC2 + MongoDB Atlas
+
+
 #### 프로젝트 구조
 ```
 couple-schedule-app/
